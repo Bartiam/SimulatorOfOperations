@@ -7,10 +7,10 @@ struct Coordinates
 	double y;
 };
 
-void scalpel(Coordinates coordinates);
+void scalpel(Coordinates& coorBegin, Coordinates& coorEnd);
 
-void hemostat(Coordinates coordinates, double x);
+void hemostat(Coordinates& hemostatAndTweezers);
 
-void tweezers(Coordinates coordinates, double x);
+void tweezers(Coordinates& hemostatAndTweezers);
 
-void suture(Coordinates coordinates);
+void suture(Coordinates& coorBegin, Coordinates& coorEnd);

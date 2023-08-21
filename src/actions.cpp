@@ -1,23 +1,27 @@
 #include "actions.h"
 
-void scalpel(Coordinates coordinates)
+void scalpel(Coordinates& coorBegin, Coordinates& coorEnd)
 {
 	std::cout << "A cut was made according to the coordinates: " <<
-		coordinates.x << " " << coordinates.y << std::endl;
+		coorBegin.x << " " << coorBegin.y << " " <<
+		coorEnd.x << " " << coorEnd.y << std::endl;
 }
 
-void hemostat(Coordinates coordinates, double x)
+void hemostat(Coordinates& hemostatAndTweezers)
 {
-	std::cout << "A clamp has been placed on the coordinate: " << x << std::endl;
+	std::cout << "A clamp has been placed on the coordinates: " <<
+		hemostatAndTweezers.x << " " << hemostatAndTweezers.y << std::endl;
 }
 
-void tweezers(Coordinates coordinates, double x)
+void tweezers(Coordinates& hemostatAndTweezers)
 {
-	std::cout << "Used tweezers by coordinate: " << x << std::endl;
+	std::cout << "Used tweezers by coordinate: " <<
+		hemostatAndTweezers.x << " " << hemostatAndTweezers.y << std::endl;
 }
 
-void suture(Coordinates coordinates)
+void suture(Coordinates& coorBegin, Coordinates& coorEnd)
 {
 	std::cout << "A seam is made between the coordinates: " <<
-		coordinates.x << " " << coordinates.y << std::endl;
+		coorBegin.x << " " << coorBegin.y << " " <<
+		coorEnd.x << " " << coorEnd.y << std::endl;
 }

@@ -13,26 +13,21 @@ bool is_correct_command(std::string& command)
 	return true;
 }
 
-bool is_correct_coordinates(Coordinates coordinates)
+bool is_correct_one_coordinate(const Coordinates& coorBegin,
+	const Coordinates& coorEnd,const Coordinates& hemostat)
 {
-	if (coordinates.x < 0 || coordinates.y < 0)
+	if (hemostat.x < coorBegin.x || hemostat.x > coorEnd.x ||
+		hemostat.y < coorBegin.y || hemostat.y > coorEnd.y)
 		return false;
 
 	return true;
 }
 
-bool is_correct_one_coordinate(Coordinates coordinates, double x)
+bool is_correct_coordinates_of_suture(const Coordinates& coorBeginSection, const Coordinates& coorEndSection,
+	const Coordinates& seamBeginCoor, const Coordinates& seamEndCoor)
 {
-	if (x < coordinates.x || x > coordinates.y)
-		return false;
-
-	return true;
-}
-
-bool is_correct_coordinates_of_suture(Coordinates coordinatesOfSection, Coordinates seamCoordinates)
-{
-	if (seamCoordinates.x < coordinatesOfSection.x ||
-		seamCoordinates.y > coordinatesOfSection.y)
+	if (seamBeginCoor.x < coorBeginSection.x || seamBeginCoor.y < coorBeginSection.y ||
+		seamEndCoor.x > coorEndSection.x || seamEndCoor.y > coorEndSection.y)
 		return false;
 
 	return true;

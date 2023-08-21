@@ -1,15 +1,20 @@
 #include "actions.h"
 #include "correctness.h"
-#include <iostream>
 #include <string>
 
 int main()
 {
-	Coordinates coordinatesOfSection;
-	Coordinates seamCoordinates;
+	Coordinates coordinatesBenningOfSection;
+	Coordinates coordinatesEndOfSection;
+
+	Coordinates seamBeginningCoordinates;
+	Coordinates seamEndCoordinates;
+
+	Coordinates hemostatAndTweezers;
+
 	bool isOperationCompleted = false;
+
 	std::string command;
-	double x;
 
 	while (!isOperationCompleted)
 	{
@@ -27,15 +32,10 @@ int main()
 			while (!isOperationCompleted)
 			{
 				std::cout << "Where to make an incision, Specify two coordinates: ";
-				std::cin >> coordinatesOfSection.x >> coordinatesOfSection.y;
+				std::cin >> coordinatesBenningOfSection.x >> coordinatesBenningOfSection.y;
+				std::cin >> coordinatesEndOfSection.x >> coordinatesEndOfSection.y;
 
-				if (!is_correct_coordinates(coordinatesOfSection))
-				{
-					std::cerr << "Coordinates cannot be negative. Try again. " << std::endl;
-					continue;
-				}
-
-				scalpel(coordinatesOfSection);
+				scalpel(coordinatesBenningOfSection, coordinatesEndOfSection);
 
 				while (!isOperationCompleted)
 				{
@@ -53,14 +53,14 @@ int main()
 						while (true)
 						{
 							std::cout << "Enter the coordinate for the clamp: ";
-							std::cin >> x;
+							std::cin >> hemostatAndTweezers.x >> hemostatAndTweezers.y;
 
-							if (!is_correct_one_coordinate(coordinatesOfSection, x))
+							if (!is_correct_one_coordinate(coordinatesBenningOfSection, coordinatesEndOfSection, hemostatAndTweezers))
 							{
 								std::cerr << "There is no cut at this coordinate. Try again." << std::endl;
 								continue;
 							}
-							hemostat(coordinatesOfSection, x);
+							hemostat(hemostatAndTweezers);
 							break;
 						}
 					}
@@ -69,14 +69,14 @@ int main()
 						while (true)
 						{
 							std::cout << "Enter the coordinate for the tweezers: ";
-							std::cin >> x;
+							std::cin >> hemostatAndTweezers.x >> hemostatAndTweezers.y;
 
-							if (!is_correct_one_coordinate(coordinatesOfSection, x))
+							if (!is_correct_one_coordinate(coordinatesBenningOfSection, coordinatesEndOfSection, hemostatAndTweezers))
 							{
 								std::cerr << "There is no cut at this coordinate. Try again. " << std::endl;
 								continue;
 							}
-							tweezers(coordinatesOfSection, x);
+							tweezers(hemostatAndTweezers);
 							break;
 						}
 					}
@@ -85,21 +85,20 @@ int main()
 						while (true)
 						{
 							std::cout << "Enter the coordinates for the suture: ";
-							std::cin >> seamCoordinates.x >> seamCoordinates.y;
+							std::cin >> seamBeginningCoordinates.x >> seamBeginningCoordinates.y;
+							std::cin >> seamEndCoordinates.x >> seamEndCoordinates.y;
 
-							if (!is_correct_coordinates(seamCoordinates))
-							{
-								std::cerr << "There is no cut at this coordinate. " << std::endl;
-								continue;
-							}
-
-							if (!is_correct_coordinates_of_suture(coordinatesOfSection, seamCoordinates))
+							if (!is_correct_coordinates_of_suture(coordinatesBenningOfSection,
+								coordinatesEndOfSection, seamBeginningCoordinates, seamEndCoordinates))
 								std::cerr << "Are you trying to make a seam where there is no incision. Try again." << std::endl;
 							else
 							{
-								suture(seamCoordinates);
-								if (coordinatesOfSection.x == seamCoordinates.x &&
-									coordinatesOfSection.y == seamCoordinates.y) isOperationCompleted = true;
+								suture(seamBeginningCoordinates, seamEndCoordinates);
+
+								if (coordinatesBenningOfSection.x == seamBeginningCoordinates.x &&
+									coordinatesBenningOfSection.y == seamBeginningCoordinates.y && 
+									coordinatesEndOfSection.x == seamEndCoordinates.x &&
+									coordinatesEndOfSection.y == seamEndCoordinates.y) isOperationCompleted = true;
 								break;
 							}
 						}
