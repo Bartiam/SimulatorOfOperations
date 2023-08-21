@@ -94,7 +94,7 @@ int main()
 							}
 
 							if (!is_correct_coordinates_of_suture(coordinatesOfSection, seamCoordinates))
-								std::cerr << "Are you trying to make a seam where there is no incision. " << std::endl;
+								std::cerr << "Are you trying to make a seam where there is no incision. Try again." << std::endl;
 							else
 							{
 								suture(seamCoordinates);
