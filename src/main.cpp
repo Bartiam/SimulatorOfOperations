@@ -1,5 +1,5 @@
-#include "include/actions.h" // Моя IDE требует вот такой записи при использовании второго CmakeLists в директории src, иначе она не находит actions.h. 
-#include "include/correctness.h" // Может вы знает почему ? Или это такая спецификация Microsoft visual studio ?
+#include "include/actions.h"
+#include "include/correctness.h"
 #include <iostream>
 #include <string>
 
