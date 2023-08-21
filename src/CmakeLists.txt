@@ -3,4 +3,4 @@ cmake_minimum_required(VERSION 3.26.3)
 add_executable(${PROJECT_NAME} main.cpp ${MY_INCLUDE_DIR}/actions.h actions.cpp 
 ${MY_INCLUDE_DIR}/correctness.h correctness.cpp)
 
-target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_SOURCE_DIR})
+target_include_directories(${PROJECT_NAME} PUBLIC ${MY_INCLUDE_DIR})

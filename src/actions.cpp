@@ -1,4 +1,4 @@
-#include "include/actions.h"
+#include "actions.h"
 
 void scalpel(Coordinates coordinates)
 {

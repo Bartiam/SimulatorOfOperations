@@ -1,5 +1,5 @@
-#include "include/actions.h"
-#include "include/correctness.h"
+#include "actions.h"
+#include "correctness.h"
 #include <iostream>
 #include <string>
 
